@@ -1,0 +1,51 @@
+client.interaction = {}; 
+const DiscordButtons = require('discord-buttons'); 
+const ButtonPages = require('discord-button-pages'); 
+DiscordButtons(client);
+
+client.on('clickButton', (button) => {
+  ButtonPages.buttonInteractions(button, client.interaction);
+});
+
+client.on('message', msg => {
+  if (msg.content === '.yardım') {
+    const embed1 = new Discord.MessageEmbed()
+        .setTitle('**Sayfa 1**')
+        .addField('> -abonelog ',' Abone Logunu Ayarlarsınız')
+.addField('> .abone ',' → Abone Rolü Verirsiniz')
+.addField('> .aboneyrol ',' → Abone Rolünü verecek Yetkili rolünü ayarlarsınız')
+.addField('> .abonerol','  → Abone Rolünü Ayarlarsınız (YETKİLİ KANALINDA YAPMANIZ TAVSİTE EDİLİR)')
+        .setColor('RED');
+        
+    const embed2 = new Discord.MessageEmbed()
+.setTitle('Doğruluk Cesaret')
+.addField(' .ds', 'Doğruluk Soruları Sorar')
+.addField(' .cs', 'Cesaret Soruları Sorar')
+.addField(' .p', 'Pas')
+.addField(' .u', 'Bir kişiyi uyarırsınız')
+        .setColor('YELLOW');
+        
+    const embed3 = new Discord.MessageEmbed()
+        .setTitle('Gif Komutları')
+        .addField('.gif-ara','Gif Ararsınız')
+.addField('.mangif','Erkek gifi')
+.addField('.womangif','Kadın gifi')
+.addField('.animegif','Anime gif')
+.addField('.babygif','Bebek gif')
+.addField('.hayvangif','Hayvan gifi')
+.setColor('BLUE');
+    
+const embed4 = new Discord.MessageEmbed()
+.addField(`<:sagok:778774307253518366> __Bayrak Ayarla__`,` \`s*bayrakayarla\` İstediğiniz Bayrağı Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __Cinsiyet Ayarla__`,` \`s*cinsiyetayarla\` Cinsiyetinizi Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __İsim Ayarla__`,` \`s*isimayarla\` İsminizi Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __Soyisim Ayarla__`,` \`s*soyisimayarla\` Soyisminizi Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __Yaş Ayarla__`,` \`s*yaşayarla\` Yaşınızı Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __Favori Oyun Ayarla__`,` \`s*favorioyun\` Favori Oyununuzu Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __Favori Şarkı Ayarla__`,` \`s*favorişarkı\` Favori Şarkınızı Ayarlarsınız.`,true)
+.addField(`<:sagok:778774307253518366> __Profilim__`,` \`s*profilim\` Profilinize Bakarsınız.`,true)
+
+    const embedPages = [embed1, embed2, embed3, embed4];
+    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "blurple", "👉", "👈", "❌");
+  }
+});
